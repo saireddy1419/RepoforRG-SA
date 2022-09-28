@@ -8,7 +8,7 @@ variable "location" {
     default     = "uksouth"
 }
 
-    variable "tags" {
+variable "tags" {
     description = "Tags for Resource"
     type     =  map(string)
     default = {
