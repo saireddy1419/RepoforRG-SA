@@ -13,3 +13,20 @@ module "storage_account" {
   ]
   resource_group_name = module.resource_group.resource_group_name 
 }
+
+module "app_service_plan" {
+  source = "../modules/afp"
+  depends_on = [
+    module.storage_account
+  ]
+  resource_group_name = module.resource_group.resource_group_name  
+}
+
+module "function_app" {
+  source = "../modules/fa"
+  depends_on = [
+    module.app_service_plan
+  ]
+  resource_group_name = module.resource_group.resource_group_name
+  app_service_id = module.app_service_plan.app_service_id
+}
